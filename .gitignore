@@ -1,1 +1,10 @@
+# Build
+Build/
+
+# Linux
 *~
+
+# Makefile
+*.i
+*.o
+*.s
