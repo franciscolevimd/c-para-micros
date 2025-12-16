@@ -1,14 +1,25 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#define DIGITO_1 0
-#define DIGITO_2 1
-#define DIGITO_3 2
+#define IDEAL 0
+#define DIGITO_1 1
+#define DIGITO_2 2
+#define DIGITO_3 3
 
 #define VALIDO 4
 #define ERROR 5
 
 #define TAMPASS 3
+
+
+uint8_t scanf_uint8()
+{
+    uint8_t Resultado;
+    scanf("%hhu", &Resultado);
+    while (getchar() != '\n')
+        ;
+    return Resultado;
+}
 
 /**
  * Diseña un programa que lea una contraseña de 3 números e imprima un mensaje de
@@ -20,7 +31,7 @@
  */
 int main(void)
 {
-    int Estado = DIGITO_1;
+    uint8_t Estado = IDEAL;
     uint8_t Digito;
     uint8_t Pass[TAMPASS] = {1, 0, 5};
 
@@ -33,12 +44,15 @@ int main(void)
     {
         switch (Estado)
         {
+            case IDEAL:
+                printf("Puerta Cerrada\n");
+                Estado = DIGITO_1;
+                break;
+
             case DIGITO_1:
-                printf(">: ");
-                scanf("%hhu", &Digito);
-                while (getchar() != '\n')
-                    ;
-                if (Pass[DIGITO_1] == Digito)
+                printf("[1]>: ");
+                Digito = scanf_uint8();
+                if (Pass[DIGITO_1 - 1] == Digito)
                 {
                     Estado = DIGITO_2;
                 }
@@ -49,13 +63,11 @@ int main(void)
                 break;
 
             case DIGITO_2:
-                printf(">: ");
-                scanf("%hhu", &Digito);
-                while (getchar() != '\n')
-                    ;
-                if (Pass[DIGITO_2] == Digito)
+                printf("[2]>: ");
+                Digito = scanf_uint8();
+                if (Pass[DIGITO_2 - 1] == Digito)
                 {
-                    Estado = DIGITO_3;
+		  Estado = DIGITO_3;
                 }
                 else
                 {
@@ -64,11 +76,9 @@ int main(void)
                 break;
 
             case DIGITO_3:
-                printf(">: ");
-                scanf("%hhu", &Digito);
-                while (getchar() != '\n')
-                    ;
-                if (Pass[DIGITO_3] == Digito)
+                printf("[3]>: ");
+                Digito = scanf_uint8();
+                if (Pass[DIGITO_3 - 1] == Digito)
                 {
                     Estado = VALIDO;
                 }
@@ -80,7 +90,7 @@ int main(void)
 
             case VALIDO:
                 printf("Puerta Abierta\n");
-                Estado = DIGITO_1;
+                Estado = IDEAL;
                 break;
 
             case ERROR:
