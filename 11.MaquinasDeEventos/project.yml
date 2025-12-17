@@ -1,0 +1,24 @@
+:project:
+  :build_root: Build/ceedling
+  :release_build: TRUE
+
+:paths:
+  :test:
+    - test/** # Directorio donde están los archivos a testear.
+  :source:
+    - App/** # Directorio donde están las funciones a testear.
+  :include:
+    - App/** # Directorio donde se encuentran los .h.
+
+:plugins:
+  :load_paths: []
+  :enabled:
+    - report_tests_pretty_stdout
+    - gcov
+
+:gcov:
+  :abort_on_uncovered: true
+  :utilities:
+    - gcovr
+  :reports:
+    - HtmlDetailed
