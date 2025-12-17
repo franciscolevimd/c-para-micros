@@ -1,6 +1,6 @@
 CC        = gcc
 BUILD_DIR = Build
-APP       = MaquinaApp
+APP       = MaquinaEventosApp
 
 LNFLAGS = --inline-suppr          # comments to supress lint warnings
 LNFLAGS += --quiet                # spit only useful information
@@ -13,7 +13,7 @@ LNFLAGS += --platform=unix32      # lint againt a unix32 plataform, but we are u
 LNFLAGS += --cppcheck-build-dir=Build/lint
 
 # Archivos fuente
-SRC = App/MaquinaContra.c App/main.c
+SRC = App/Ejemplo.c
 
 # Archivos .i
 PRE = $(patsubst App/%.c,$(BUILD_DIR)/%.i,$(SRC))
