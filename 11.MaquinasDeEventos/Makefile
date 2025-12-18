@@ -13,7 +13,7 @@ LNFLAGS += --platform=unix32      # lint againt a unix32 plataform, but we are u
 LNFLAGS += --cppcheck-build-dir=Build/lint
 
 # Archivos fuente
-SRC = App/Ejemplo.c
+SRC = App/MaquinaDeEventos.c App/Semaforo.c App/main.c
 
 # Archivos .i
 PRE = $(patsubst App/%.c,$(BUILD_DIR)/%.i,$(SRC))
