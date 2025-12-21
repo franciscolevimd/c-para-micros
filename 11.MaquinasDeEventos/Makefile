@@ -14,6 +14,7 @@ LNFLAGS += --cppcheck-build-dir=Build/lint
 
 # Archivos fuente
 SRC = App/MaquinaDeEventos.c App/Semaforo.c App/main.c
+HEADERS = App/MaquinaDeEventos.h App/Semaforo.h
 
 # Archivos .i
 PRE = $(patsubst App/%.c,$(BUILD_DIR)/%.i,$(SRC))
@@ -36,7 +37,7 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
 # Preprocesador.
-$(BUILD_DIR)/%.i: App/%.c
+$(BUILD_DIR)/%.i: App/%.c App/%.h
 	$(CC) -E $< -o $@
 
 # Ensamblador.

@@ -2,29 +2,19 @@
 #include <time.h>
 
 uint8_t Estado;
-const char* (*ptr_ArrayEstados[TOTAL_EVENTOS])(void);
+uint8_t (*ptr_ArrayEstados[TOTAL_EVENTOS])(void);
 
 uint32_t milliseconds(void)
 {
     return clock() / (CLOCKS_PER_SEC / 1000);
 }
 
-const char* MaquinaDeEventos(void)
+uint8_t MaquinaDeEventos(uint8_t Estado)
 {
     return ptr_ArrayEstados[Estado]();
 }
 
-void set_Evento(const char* (*ptr_Estado)(void), uint8_t indice)
+void set_Evento(uint8_t (*ptr_Estado)(void), uint8_t Estado)
 {
-    ptr_ArrayEstados[indice] = ptr_Estado;
-}
-
-void set_Estado(uint8_t n_Estado)
-{
-    Estado = n_Estado;
-}
-
-uint8_t get_Estado(void)
-{
-    return Estado;
+    ptr_ArrayEstados[Estado] = ptr_Estado;
 }

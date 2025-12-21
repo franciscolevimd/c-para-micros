@@ -3,7 +3,6 @@
 
 void IniciaSemaforo()
 {
-    set_Estado(VERDE);
     set_Evento(Verde, VERDE);
     set_Evento(Ambar1, AMBAR_1);
     set_Evento(Ambar2, AMBAR_2);
@@ -11,32 +10,47 @@ void IniciaSemaforo()
     set_Evento(Rojo, ROJO);
 }
 
-const char* Verde(void)
+uint8_t Verde(void)
 {
-    set_Estado(AMBAR_1);
-    return "VERDE\0";
+    return AMBAR_1;
 }
 
-const char* Ambar1(void)
+uint8_t Ambar1(void)
 {
-    set_Estado(AMBAR_2);
-    return "AMBAR\0";
+    return AMBAR_2;
 }
 
-const char* Ambar2(void)
+uint8_t Ambar2(void)
 {
-    set_Estado(AMBAR_3);
-    return "AMBAR\0";
+    return AMBAR_3;
 }
 
-const char* Ambar3(void)
+uint8_t Ambar3(void)
 {
-    set_Estado(ROJO);
-    return "AMBAR\0";
+    return ROJO;
 }
 
-const char* Rojo(void)
+uint8_t Rojo(void)
 {
-    set_Estado(VERDE);
-    return "ROJO\0";
+    return VERDE;
+}
+
+/**
+ * Se devuelve el color de luz anterior al estado actual.
+ */
+const char* get_Luz(uint8_t Estado)
+{
+    switch (Estado)
+    {
+        case VERDE:
+            return "VERDE\0";
+        case AMBAR_1:
+        case AMBAR_2:
+        case AMBAR_3:
+            return "AMBAR\0";
+        case ROJO:
+            return "ROJO\0";
+        default:
+            break;
+    }
 }
