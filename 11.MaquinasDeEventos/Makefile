@@ -6,7 +6,7 @@ LNFLAGS = --inline-suppr          # comments to supress lint warnings
 LNFLAGS += --quiet                # spit only useful information
 LNFLAGS += --enable=warning,style # enable only warnings
 LNFLAGS += --error-exitcode=1     # return error if any warnings
-LNFLAGS += std=c11                # check against C11
+LNFLAGS += --std=c11              # check against C11
 LNFLAGS += --template=gcc         # display warning gcc style
 LNFLAGS += --force                # evaluate all the #if sentences
 LNFLAGS += --platform=unix32      # lint againt a unix32 plataform, but we are using arm32
@@ -58,7 +58,7 @@ $(BUILD_DIR)/$(APP): $(OBJ)
 # Target para reglas Misra.
 lint:
 	mkdir -p Build/lint
-	cppcheck --addon=misra.json --suppressions-list=.msupress $(LNFLAGS) App
+	cppcheck --addon=misra.json --suppressions-list=.msuppress $(LNFLAGS) $(SRC) $(HEADERS)
 
 # Pruebas unitarias
 test:

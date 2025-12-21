@@ -1,7 +1,9 @@
 #include "Semaforo.h"
 #include "MaquinaDeEventos.h"
 
-void IniciaSemaforo()
+#include <string.h>
+
+void IniciaSemaforo(void)
 {
     set_Evento(Verde, VERDE);
     set_Evento(Ambar1, AMBAR_1);
@@ -40,17 +42,30 @@ uint8_t Rojo(void)
  */
 const char* get_Luz(uint8_t Estado)
 {
+    static char Resultado[6];
+    (void)memset(Resultado, 0, 6);
+
     switch (Estado)
     {
         case VERDE:
-            return "VERDE\0";
+            (void)strcpy(Resultado, "VERDE");
+            break;
         case AMBAR_1:
+            (void)strcpy(Resultado, "AMBAR");
+            break;
         case AMBAR_2:
+            (void)strcpy(Resultado, "AMBAR");
+            break;
         case AMBAR_3:
-            return "AMBAR\0";
+            (void)strcpy(Resultado, "AMBAR");
+            break;
         case ROJO:
-            return "ROJO\0";
+            (void)strcpy(Resultado, "ROJO");
+            break;
         default:
+            (void)strcpy(Resultado, "");
             break;
     }
+
+    return Resultado;
 }

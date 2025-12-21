@@ -15,7 +15,7 @@ typedef struct
     char ID[3];
 } Semaforo;
 
-void IniciaSemaforo();
+void IniciaSemaforo(void);
 
 uint8_t Verde(void);
 uint8_t Ambar1(void);

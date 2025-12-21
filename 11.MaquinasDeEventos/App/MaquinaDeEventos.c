@@ -1,7 +1,6 @@
 #include "MaquinaDeEventos.h"
 #include <time.h>
 
-uint8_t Estado;
 uint8_t (*ptr_ArrayEstados[TOTAL_EVENTOS])(void);
 
 uint32_t milliseconds(void)
